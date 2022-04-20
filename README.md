@@ -11,3 +11,5 @@ conda install -c rdkit rdkit
 
 conda install -hnswlib
 # Usage
+
+test
