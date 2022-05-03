@@ -5,7 +5,7 @@
 
 ![GitHub](https://img.shields.io/badge/platform-Windows|Linux|MacOS-brightgreen)
 
-![GitHub](https://img.shields.io/badge/license-Apache--2.0 License-orange)
+![GitHub](https://img.shields.io/badge/license-Apache--2.0%20License-orange)
 
 FastEI is an ultra-fast and accurate spectrum matching method, proposed to improve accuracy by Word2vec-based spectrum embedding and boost the speed using hierarchical navigable small world graph (HNSW)
 
