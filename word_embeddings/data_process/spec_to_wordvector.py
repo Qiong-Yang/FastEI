@@ -11,7 +11,6 @@ from typing import Union
 import numpy
 from gensim.models import Word2Vec
 from tqdm import tqdm
-import numba
 import numpy
 from gensim.models.basemodel import BaseTopicModel
 from data_process.spec import SpectrumDocument,Spectrum,Document
