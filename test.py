@@ -75,7 +75,7 @@ xq = xq/xq_len
 dim = 500
 start_time=time.time()*1000
 p = hnswlib.Index(space='l2', dim=dim) 
-p.load_index("index/2343378_index.bin", max_elements =2166721)
+p.load_index("index/references_index.bin", max_elements =2166721)
 end_time=time.time()*1000
 print('loadindex_time %.4f'%((end_time-start_time)/100))
 import time
@@ -88,8 +88,9 @@ I, D = p.knn_query(xq, k)
 end_time=time.time()*1000
 print('search_time %.4f'%((end_time-start_time)/100))
 
-np.save('data/results/index_results.npy',I)
-np.save('data/results/score_results.npy',D)
+np.save('data/results/10compounds_index_results.npy',I)
+np.save('data/results/10compounds_score_results.npy',D)
+
 
 
 
