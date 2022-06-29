@@ -88,8 +88,8 @@ I, D = p.knn_query(xq, k)
 end_time=time.time()*1000
 print('search_time %.4f'%((end_time-start_time)/100))
 
-np.save('data/results/10compounds_index_results.npy',I)
-np.save('data/results/10compounds_score_results.npy',D)
+np.save('data/10compounds_index_results.npy',I)
+np.save('data/10compounds_score_results.npy',D)
 
 
 
