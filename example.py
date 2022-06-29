@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue May  3 15:25:26 2022
+Created on Thu Jan  6 17:30:56 2022
 
 @author: yang
 """
+
 
 import pandas as pd
 import os
@@ -50,7 +51,7 @@ for i in range(len(all_files)):
         spectrum = spec.Spectrum(mz=M,intensities=I,
                                 metadata={'compound_name': 'substance_measured'+str(all_files[i])})
         spectrums.append(spectrum)
-spec.save_as_mgf(spectrums, 'data/10compounds_meassured_spectra.mgf') 
+spec.save_as_mgf(spectrums, 'data/meassured_spectra.mgf') 
 model_file ="model/references_word2vec.model"
         # Load pretrained model (here dummy model)
 model = gensim.models.Word2Vec.load(model_file)
@@ -62,7 +63,7 @@ for i in tqdm(range(len(spectrums))):
     embedding=spectovec._calculate_embedding(spectrum_in)
     wordembeddings.append(embedding)
 spectra_embeddings=csr_matrix(np.array(wordembeddings))
-save_npz('data/10compounds_meassured_spectra_embeddings.npz',spectra_embeddings)
+save_npz('data/meassured_spectra_embeddings.npz',spectra_embeddings)
 
 
 import time
@@ -74,7 +75,7 @@ xq = xq/xq_len
 dim = 500
 start_time=time.time()*1000
 p = hnswlib.Index(space='l2', dim=dim) 
-p.load_index("index/2343378_index.bin", max_elements =2166721)
+p.load_index("index/references_index.bin", max_elements =2343378)
 end_time=time.time()*1000
 print('loadindex_time %.4f'%((end_time-start_time)/100))
 import time
@@ -89,6 +90,7 @@ print('search_time %.4f'%((end_time-start_time)/100))
 
 np.save('data/results/10compounds_index_results.npy',I)
 np.save('data/results/10compounds_score_results.npy',D)
+
 
 
 
