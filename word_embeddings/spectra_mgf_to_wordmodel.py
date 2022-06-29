@@ -10,11 +10,14 @@ from tqdm import tqdm
 from data_process import spec
 import os
 import gensim
-spectrums=list(spec.load_from_mgf("/predicted_spectrums.mgf"))
+spectrums=list(spec.load_from_mgf("data/predcited_spectrums.mgf"))
 reference_documents = [spec.SpectrumDocument(s, n_decimals=0) for s in spectrums]
 from data_process.model_building import train_new_word2vec_model    
-model_file = "/word2vec.model"
+model_file = "model/references_word2vec.model"
 model = train_new_word2vec_model(reference_documents, iterations=[40,60,80], filename=model_file,vector_size=500,
                                  workers=10, progress_logger=True)
+ 
+
+
  
 
