@@ -10,7 +10,7 @@ from tqdm import tqdm
 from rdkit import Chem
 from data_process import spec
 import sqlite3
-gradedb = sqlite3.connect("C:/Users/yang/Downloads/FastEIGUI-main/gui/data/IN_SILICO_LIBRARY.db")
+gradedb = sqlite3.connect("data/IN_SILICO_LIBRARY.db")
 cursor=gradedb.cursor()
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 Tables=cursor.fetchall()
