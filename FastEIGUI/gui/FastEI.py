@@ -416,10 +416,12 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
             self.ErrorMsg('Please run program first!')
             return
         
-        selectItem = self.listWidgetQue.currentItem().text()
+        selectItem = self.listWidgetQue.currentItem()
         if not selectItem:
             self.ErrorMsg('No item is selected!')
             return
+        else:
+            selectItem = selectItem.text()
         
         wh = self.QueryList.index(selectItem)
         index = self.ResultIndex[wh]
