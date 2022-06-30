@@ -75,7 +75,7 @@ xq = xq/xq_len
 dim = 500
 start_time=time.time()*1000
 p = hnswlib.Index(space='l2', dim=dim) 
-p.load_index("index/references_index.bin", max_elements =2343378)
+p.load_index("C:/Users/yang/Downloads/FastEIGUI/gui/data/references_index.bin", max_elements =2343378)
 end_time=time.time()*1000
 print('loadindex_time %.4f'%((end_time-start_time)/100))
 import time
