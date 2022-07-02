@@ -23,13 +23,59 @@ conda install -c rdkit rdkit
 
 conda install -hnswlib
 
+# Installation
+
+The current install version of FastEI only supports Windows 64-bit version. It has been test on windows 7, windows 10.
+
+Install Package: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/FastEI/releases/tag/v1.0.0-beta)
+
+#### Note: All the database, HNSW index, Word2vec model and query spectra examples are included in the installation package. So there are four files needed to be downloaded, including FastEI-GUI.exe, FastEI-GUI-1.bin,  FastEI-GUI-2.bin, and FastEI-GUI-3.bin. It will take some time to install. Please be patient.
+
+# Development version
+
+1. Install [Anaconda](https://www.anaconda.com/) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html)   
+
+2. Install [Git](https://git-scm.com/downloads)  
+
+3. Open commond line, clone the repository and enter:  
+
+       git clone https://github.com/Qiong-Yang/FastEI.git
+       cd FastEI
+
+4. Create environment and install dependency with the following commands :  
+
+      conda env create -f FastEI.yml 
+      conda activate FastEI
+
+5. Run FastEI.py:  
+        
+
+       cd FastEIGUI/gui
+       python FastEI.py
+
+
 # Usage
 
-**Word2vec model and HNSW index download:**
+## Soft
 
-Please put [HNSW_index.bin](https://zenodo.org/record/6496527/files/2343378_index.bin)  in to **index** directory 
+The Full video for using the FastEI is available at the [video folder](https://github.com/Qiong-Yang/FastEI/tree/main/Video).
 
-Please put [references_word2vec.model](https://zenodo.org/record/6496527/files/references_word2vec.model)   in to **model** directory 
+For the details on how to use FastEI, please check [Ducomentation](https://github.com/Qiong-Yang/FastEI/blob/main/Documentation.docx). 
+
+## Code
+
+**Database, Word2vec model and HNSW index download:**
+
+Please put [IN_SILICO_LIBRARY.db](https://zenodo.org/record/6778379/files/IN_SILICO_LIBRARY.db)   in to **data** directory 
+
+Please put [references_index.bin](https://zenodo.org/record/6778379/files/references_index.bin)  in to **index** directory 
+
+Please put [references_word2vec.model](https://zenodo.org/record/6778379/files/references_word2vec.model)   in to **model** directory 
 
 Take **example.py** as an example for molecular identification.
 If you want to identify molecules  based on your spectra, please put your spectra files in to **spectra** directory and run **test.py**.
+
+# Contact
+
+Yang qiong   
+E-mail: 192301010@csu.edu.cn
