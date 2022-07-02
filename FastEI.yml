@@ -1,4 +1,4 @@
-name: FastEI1
+name: FastEI
 channels:
   - rdkit
   - anaconda
@@ -122,4 +122,4 @@ dependencies:
     - typed-ast==1.5.4
     - webencodings==0.5.1
     - wrapt==1.14.1
-prefix: D:\ANACONDA\envs\FastEI1
+prefix: ANACONDA\envs\FastEI
