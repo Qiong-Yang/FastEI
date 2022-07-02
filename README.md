@@ -15,19 +15,21 @@ The *in-silico* library with predicted spectra of large-scale molecules can exte
 
 # Depends
 
-Anaconda for python 3.7
 
-conda install gensim
+[Anaconda for Python 3.7](https://repo.anaconda.com/archive/Anaconda3-2022.05-Windows-x86_64.exe)
+
+conda install -c conda-forge gensim
 
 conda install -c rdkit rdkit
 
-conda install -hnswlib
+conda install -c conda-forge hnswlib
+
 
 # Installation
 
 The current install version of FastEI only supports Windows 64-bit version. It has been test on windows 7, windows 10.
 
-Install Package: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/FastEI/releases/tag/v1.0.0-beta)
+Install software: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/FastEI/releases/tag/v1.0.0-beta)
 
 #### Note: All the database, HNSW index, Word2vec model and query spectra examples are included in the installation package. So there are four files needed to be downloaded, including FastEI-GUI.exe, FastEI-GUI-1.bin,  FastEI-GUI-2.bin, and FastEI-GUI-3.bin. It will take some time to install. Please be patient.
 
@@ -56,7 +58,7 @@ Install Package: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/Fa
 
 # Usage
 
-## Soft
+## Software
 
 The Full video for using the FastEI is available at the [video folder](https://github.com/Qiong-Yang/FastEI/tree/main/Video).
 
