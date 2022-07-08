@@ -3,8 +3,6 @@
 </div>
 
 
-![GitHub](https://img.shields.io/badge/platform-Windows|Linux|MacOS-brightgreen)
-
 ![GitHub](https://img.shields.io/badge/license-Apache--2.0%20License-orange)
 
 FastEI is an ultra-fast and accurate spectrum matching method, proposed to improve accuracy by Word2vec-based spectrum embedding and boost the speed using hierarchical navigable small world graph (HNSW)
@@ -62,7 +60,7 @@ Install software: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/F
 
 The Full video for using the FastEI is available at the [video folder](https://github.com/Qiong-Yang/FastEI/tree/main/Video).
 
-For the details on how to use FastEI, please check [Ducomentation](https://github.com/Qiong-Yang/FastEI/blob/main/Documentation.docx). 
+For the details on how to use FastEI, please check [Ducomentation](https://github.com/Qiong-Yang/FastEI/blob/main/Documentation.pdf). 
 
 ## Code
 
