@@ -1,3 +1,5 @@
+
+
 <div align="center">
 <img src="https://github.com/Qiong-Yang/FastEI/blob/main/img/FastEI%20figure.png" width="50%">
 </div>
@@ -58,7 +60,11 @@ Install software: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/F
 
 ## Software
 
-The Full video for using the FastEI is available at the [video folder](https://github.com/Qiong-Yang/FastEI/tree/main/Video).
+
+
+The video for using the FastEI is available at the [video folder](https://github.com/Qiong-Yang/FastEI/tree/main/Video).
+
+https://user-images.githubusercontent.com/46306770/177951580-211f125a-b647-480b-a078-1a482e5a7be8.mov
 
 For the details on how to use FastEI, please check [Ducomentation](https://github.com/Qiong-Yang/FastEI/blob/main/Documentation.pdf). 
 
