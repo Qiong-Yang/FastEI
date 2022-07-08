@@ -52,7 +52,7 @@ Install software: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/F
 5. Run FastEI.py:  
         
 
-       cd FastEIGUI/gui
+       cd GUI/ui
        python FastEI.py
 
 
