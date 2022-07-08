@@ -7,6 +7,8 @@ Created on Wed Jan 12 15:18:26 2022
 
 import numpy as np
 from tqdm import tqdm
+import sys
+sys.path.append("..")
 from data_process import spec
 import os
 import gensim

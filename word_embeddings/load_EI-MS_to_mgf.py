@@ -8,6 +8,8 @@ Created on Sun Jan  2 09:05:51 2022
 import numpy as np
 from tqdm import tqdm
 from rdkit import Chem
+import sys
+sys.path.append("..")
 from data_process import spec
 import sqlite3
 gradedb = sqlite3.connect("C:/Users/yang/Downloads/FastEIGUI/gui/data/IN_SILICO_LIBRARY.db")

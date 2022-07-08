@@ -30,7 +30,7 @@ p.set_ef(300) # ef should always be > k   ##
 end_time=time.time()*1000
 print('add_time %.4f'%((end_time-start_time)/100))
 
-import time
+
 start_time=time.time()*1000
 p.save_index('index/references_index.bin')
 end_time=time.time()*1000
