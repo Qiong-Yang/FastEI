@@ -9,15 +9,11 @@ Created on Thu Jan  6 17:30:56 2022
 import pandas as pd
 import os
 import numpy as np
-from data_process import spec
 import re
 from tqdm import tqdm
-import os
 import gensim
 from scipy.sparse import csr_matrix, save_npz,load_npz
-import os
-import gensim
-from scipy.sparse import csr_matrix, save_npz,load_npz
+from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 spectrums=[]
 all_files = os.listdir('spectra/')
@@ -78,7 +74,6 @@ p = hnswlib.Index(space='l2', dim=dim)
 p.load_index("C:/Users/yang/Downloads/FastEIGUI/gui/data/references_index.bin", max_elements =2343378)
 end_time=time.time()*1000
 print('loadindex_time %.4f'%((end_time-start_time)/100))
-import time
 start_time=time.time()*1000
 # Controlling the recall by setting ef:
 p.set_ef(300) # ef should always be > k   ##
