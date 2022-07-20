@@ -78,7 +78,7 @@ Please put [references_index.bin](https://zenodo.org/record/6778379/files/refere
 
 Please put [references_word2vec.model](https://zenodo.org/record/6778379/files/references_word2vec.model)   in to **model** directory 
 
-Take **example.py** as an example for molecular identification.
+Take **example.py** （example.ipynb）as an example for molecular identification.
 If you want to identify molecules  based on your spectra, please put your spectra files in to **spectra** directory and run **test.py**.
 
 # Contact
