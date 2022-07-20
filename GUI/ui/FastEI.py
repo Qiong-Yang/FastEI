@@ -433,10 +433,12 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
 
 
     def PlotResult(self):
-        selectItem = self.listWidgetQue.currentItem().text()
+        selectItem = self.listWidgetQue.currentItem()
         if not selectItem:
             self.ErrorMsg('No item is selected!')
             return
+        else:
+            selectItem = selectItem.text()        
         wh = self.QueryList.index(selectItem)
         spectrum = self.SpectrumList[wh]
         self.figSpe.PlotSpectrum(spectrum)
