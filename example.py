@@ -4,9 +4,7 @@ Created on Thu Jan  6 17:30:56 2022
 
 @author: yang
 """
-
-
-
+# Ten measured spectra were transformered to spectra.mgf
 import pandas as pd
 import os
 import numpy as np
@@ -55,7 +53,7 @@ for i in tqdm(range(len(spectrums))):
 spectra_embeddings=csr_matrix(np.array(wordembeddings))
 save_npz('data/meassured_spectra_embeddings.npz',spectra_embeddings)
 
-
+ # Load pretrained model to transformer spectra.mgf to spectra Word2vec embeddings
 import time
 import hnswlib
 import pickle
@@ -67,7 +65,8 @@ start_time=time.time()*1000
 p = hnswlib.Index(space='l2', dim=dim) 
 p.load_index("data/references_index.bin", max_elements =2343378)
 end_time=time.time()*1000
-print('loadindex_time %.4f'%((end_time-start_time)/100))
+print('loadindex_time %.4f'%((end_time-start_time)/1000)+ ' s')
+import time
 start_time=time.time()*1000
 # Controlling the recall by setting ef:
 p.set_ef(300) # ef should always be > k   ##
@@ -75,12 +74,34 @@ p.set_ef(300) # ef should always be > k   ##
 k=100
 I, D = p.knn_query(xq, k)
 end_time=time.time()*1000
-print('search_time %.4f'%((end_time-start_time)/100))
+print('search_time %.4f'%((end_time-start_time)/1000)+ ' s')
 
 np.save('data/10compounds_index_results.npy',I)
 np.save('data/10compounds_score_results.npy',D)
+# load ten compounds’SMILES and draw their structure
+df=pd.read_csv('data/extral_test_10compounds_SMILES.csv')
+smiles=list(df['smiles'])
+from rdkit import Chem
+from rdkit.Chem import  Draw
+mols = [Chem.MolFromSmiles(x) for x in smiles]
+Draw.MolsToGridImage(mols, molsPerRow=5, subImgSize=(300,300))
 
 
 
-
-
+#According to matching index to find matching molecules from IN_SILICO_LIBRARY.db
+import sqlite3
+gradedb = sqlite3.connect("data/IN_SILICO_LIBRARY.db")
+cursor=gradedb.cursor()
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+Tables=cursor.fetchall()
+print(Tables)
+content = cursor.execute("SELECT COMPID, SMILES, MZS,INTENSITYS from IN_SILICO_LIBRARY")
+#load predicted EI-MS and save as mgf
+matching_index=[I[0][0],I[1][0],I[2][0],I[3][0],I[4][0],I[5][1],I[6][8],I[7][14],I[8][17],I[9][99]]
+all_smiles=[]
+for row in tqdm(cursor):
+    all_smiles.append(row[1])
+matching_smiles=[all_smiles[i] for i in matching_index]
+mols = [Chem.MolFromSmiles(x) for x in matching_smiles]
+Draw.MolsToGridImage(mols, molsPerRow=5, subImgSize=(300,300))
+    
