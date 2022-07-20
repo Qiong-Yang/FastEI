@@ -6,6 +6,7 @@ Created on Thu Jan  6 17:30:56 2022
 """
 
 
+
 import pandas as pd
 import os
 import numpy as np
@@ -16,30 +17,23 @@ from scipy.sparse import csr_matrix, save_npz,load_npz
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 spectrums=[]
-all_files = os.listdir('spectra/')
-all_files=sorted(all_files,key = lambda i:int(re.match(r'(\d+)',i).group()))
+all_files = os.listdir('data/query spectra/')
 for i in range(len(all_files)):
-    f = 'spectra/' + all_files[i]
+    f = 'data/query spectra/' + all_files[i]
     mz=[]
     inten=[]  
-    with open(f, "r") as f:
-        data = []   
-        for line in f:        
-            data.append(line.rstrip())  
+    data=pd.read_csv(f,header=None)
  
-    for j in range(len(data)):
-        if data[j]=='m/z	Absolute Intensity	Relative Intensity':
-            index=j
-            for k in range(index+1,len(data)):
-                mz.append(float(round(float(data[k].split('\t')[0]))))
-                inten.append(float(data[k].split('\t')[2]))
-                M=np.array(mz)
-                I=np.array(inten)
-                I/= max(I)
+    for j in range(len(data[0])):
+        mz.append(float(round(float(data[0][j]))))
+        inten.append(float(data[1][j]))
+        M=np.array(mz)
+        I=np.array(inten)
+        I/= max(I)
                 #delete noise
-                keep = np.where(I > 0.001)[0]
-                M = M[keep]
-                I = I[keep]
+        keep = np.where(I > 0.001)[0]
+        M = M[keep]
+        I = I[keep]
 
     if max(M)>1500:
         continue
@@ -71,7 +65,7 @@ xq = xq/xq_len
 dim = 500
 start_time=time.time()*1000
 p = hnswlib.Index(space='l2', dim=dim) 
-p.load_index("index/references_index.bin", max_elements =2343378)
+p.load_index("data/references_index.bin", max_elements =2343378)
 end_time=time.time()*1000
 print('loadindex_time %.4f'%((end_time-start_time)/100))
 start_time=time.time()*1000
