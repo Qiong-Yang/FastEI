@@ -27,7 +27,9 @@ from matplotlib.figure import Figure
 
 from hnswlib import Index
 from gensim.models import Word2Vec
-
+import os
+import sys
+sys.path.append("../..")
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 
@@ -191,11 +193,11 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         self.Thread_LoadIndex = None
         
         # load default
-        self.default_index = 'data/references_index.bin'
+        self.default_index =  os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_index.bin'
         self.textBrowserIndex.setText(self.default_index)
-        self.default_database = 'data/IN_SILICO_LIBRARY.db'
+        self.default_database =os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/IN_SILICO_LIBRARY.db'
         self.textBrowserComp.setText(self.default_database)
-        self.default_model = 'data/references_word2vec.model'
+        self.default_model = os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_word2vec.model'
         self.textBrowserMod.setText(self.default_model)
         
         self.ProcessBar(30, 'loading index...')
@@ -433,10 +435,12 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
 
 
     def PlotResult(self):
-        selectItem = self.listWidgetQue.currentItem().text()
+        selectItem = self.listWidgetQue.currentItem()
         if not selectItem:
             self.ErrorMsg('No item is selected!')
             return
+        else:
+            selectItem = selectItem.text()        
         wh = self.QueryList.index(selectItem)
         spectrum = self.SpectrumList[wh]
         self.figSpe.PlotSpectrum(spectrum)
