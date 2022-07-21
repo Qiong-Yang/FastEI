@@ -14,7 +14,14 @@ from matplotlib import pyplot
 from collections import defaultdict
 from pyteomics.mgf import MGF
 import pyteomics.mgf as py_mgf
+import sqlite3
 
+def load_database(db_file):
+    # db_file = 'data/IN_SILICO_LIBRARY1.db'
+    cursor = sqlite3.connect(db_file)
+    content = cursor.execute('SELECT * from IN_SILICO_LIBRARY')
+    data = [row for row in content]
+    return data
 
 class Spikes:
     """
