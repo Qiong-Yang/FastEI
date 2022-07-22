@@ -74,11 +74,11 @@ For the details on how to use FastEI, please check [Ducomentation](https://githu
 
 Please put [IN_SILICO_LIBRARY.db](https://zenodo.org/record/6778379/files/IN_SILICO_LIBRARY.db)   in to **data** directory 
 
-Please put [references_index.bin](https://zenodo.org/record/6778379/files/references_index.bin)  in to **index** directory 
+Please put [references_index.bin](https://zenodo.org/record/6778379/files/references_index.bin)  in to **data** directory 
 
-Please put [references_word2vec.model](https://zenodo.org/record/6778379/files/references_word2vec.model)   in to **model** directory 
+Please put [references_word2vec.model](https://zenodo.org/record/6778379/files/references_word2vec.model)   in to **data** directory 
 
-Take **example.py** （example.ipynb）as an example for molecular identification.
+Take **example.py** （**example.ipynb**）as an example for molecular identification.
 If you want to identify molecules  based on your spectra, please put your spectra files in to **spectra** directory and run **test.py**.
 
 # Contact
