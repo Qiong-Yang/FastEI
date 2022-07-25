@@ -33,7 +33,7 @@ sys.path.append("../..")
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 
-from FastEI_ import Ui_Form
+from GUI.ui.FastEI_ import Ui_Form
 
 
 class MakeFigure(FigureCanvas):
@@ -148,7 +148,8 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         super(FastEI, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("FastEI")
-        self.setWindowIcon(QtGui.QIcon("FastEI.ico"))
+        self.label_2.setPixmap(QtGui.QPixmap("GUI/ui/FastEI.png"))
+        self.setWindowIcon(QtGui.QIcon("GUI/ui/FastEI.ico"))
         self.ProcessBar(0, 'ready')
         
         self.figSpe = MakeFigure(1.8, 1.2, dpi = 200)
@@ -165,17 +166,19 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         self.pushButtonIndex.clicked.connect(self.SetIndex)
         self.pushButtonMod.clicked.connect(self.SetModel)
         self.pushButtonQue.clicked.connect(self.InputQuery)
-        self.pushButtonOk.clicked.connect(self.RunProgram)
-        self.pushButtonView.clicked.connect(self.ViewResult)
-        self.pushButtonPlot.clicked.connect(self.PlotResult)
+        # self.pushButtonOk.clicked.connect(self.RunProgram)
+        # self.pushButtonView.clicked.connect(self.ViewResult)
+        # self.pushButtonPlot.clicked.connect(self.PlotResult)
+        self.listWidgetQue.itemClicked.connect(self.ViewResult)
+        self.tableWidgetRes.itemClicked.connect(self.PlotResult)
         
         self.allButtons = [self.pushButtonComp,
                            self.pushButtonIndex,
                            self.pushButtonMod,
-                           self.pushButtonQue,
-                           self.pushButtonOk,
-                           self.pushButtonView,
-                           self.pushButtonPlot]
+                           self.pushButtonQue]
+                           # self.pushButtonOk,
+                           # self.pushButtonView,
+                           # self.pushButtonPlot]
         
         self.QueryList = []
         self.Database = []
@@ -193,11 +196,11 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         self.Thread_LoadIndex = None
         
         # load default
-        self.default_index =  os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_index.bin'
+        self.default_index =  os.path.abspath(os.path.join(os.getcwd()))+'/data/references_index.bin'
         self.textBrowserIndex.setText(self.default_index)
-        self.default_database =os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/IN_SILICO_LIBRARY.db'
+        self.default_database =os.path.abspath(os.path.join(os.getcwd()))+'/data/IN_SILICO_LIBRARY.db'
         self.textBrowserComp.setText(self.default_database)
-        self.default_model = os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_word2vec.model'
+        self.default_model = os.path.abspath(os.path.join(os.getcwd()))+'/data/references_word2vec.model'
         self.textBrowserMod.setText(self.default_model)
         
         self.ProcessBar(30, 'loading index...')
@@ -344,6 +347,7 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
                 self.WarnMsg('Ignore invalid files')
             for fileName in self.QueryList:
                 self.listWidgetQue.addItem(fileName)
+        self.RunProgram()
 
 
     def RunProgram(self):
@@ -431,6 +435,7 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         result = self.compounds.loc[index,:]
         result['Distance'] = score
         result = result.reset_index(drop = True)
+        result['Rank'] = 1 + np.arange(len(result))
         self.FillResultWidget(result)
 
 
@@ -472,6 +477,7 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
 
 
     def FillResultWidget(self, data):
+        self.tableWidgetRes.horizontalHeader.setVisible(False)
         self.tableWidgetRes.setRowCount(data.shape[0])
         self.tableWidgetRes.setColumnCount(data.shape[1])
         self.tableWidgetRes.setHorizontalHeaderLabels(data.columns)
