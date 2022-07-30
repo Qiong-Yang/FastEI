@@ -28,10 +28,12 @@ from matplotlib.figure import Figure
 from hnswlib import Index
 from gensim.models import Word2Vec
 import os
+import sys
+sys.path.append("../..")
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 
-from FastEI_ import Ui_Form
+from GUI.ui.FastEI_ import Ui_Form
 
 
 class MakeFigure(FigureCanvas):
@@ -194,11 +196,11 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         self.Thread_LoadIndex = None
         
         # load default
-        self.default_index =  os.path.abspath(os.path.join(os.getcwd()))+'/data/references_index.bin'
+        self.default_index =  os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_index.bin'
         self.textBrowserIndex.setText(self.default_index)
-        self.default_database =os.path.abspath(os.path.join(os.getcwd()))+'/data/IN_SILICO_LIBRARY.db'
+        self.default_database = os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/IN_SILICO_LIBRARY.db'
         self.textBrowserComp.setText(self.default_database)
-        self.default_model = os.path.abspath(os.path.join(os.getcwd()))+'/data/references_word2vec.model'
+        self.default_model =  os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_word2vec.model'
         self.textBrowserMod.setText(self.default_model)
         
         self.ProcessBar(30, 'loading index...')
