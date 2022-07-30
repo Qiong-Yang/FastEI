@@ -72,11 +72,7 @@ For the details on how to use FastEI, please check [Ducomentation](https://githu
 
 **Database, Word2vec model and HNSW index download:**
 
-Please put [IN_SILICO_LIBRARY.db](https://zenodo.org/record/6778379/files/IN_SILICO_LIBRARY.db)   in to **data** and  **GUI/ui/data**  directory 
-
-Please put [references_index.bin](https://zenodo.org/record/6778379/files/references_index.bin)  in to **data** and  **GUI/ui/data**  directory 
-
-Please put [references_word2vec.model](https://zenodo.org/record/6778379/files/references_word2vec.model)   in to **data** and  **GUI/ui/data**  directory 
+Please put [IN_SILICO_LIBRARY.db](https://zenodo.org/record/6778379/files/IN_SILICO_LIBRARY.db)  , [references_index.bin](https://zenodo.org/record/6778379/files/references_index.bin)  and [references_word2vec.model](https://zenodo.org/record/6778379/files/references_word2vec.model)   into **data ** directory  for running **example.py** or **test.py** , and  into **GUI/ui/data**  directory  for FastEI GUI.
 
 Take **example.py** （**example.ipynb**）as an example for molecular identification.
 If you want to identify molecules  based on your spectra, please put your spectra files in to **spectra** directory and run **test.py**.
