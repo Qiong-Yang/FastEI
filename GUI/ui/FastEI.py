@@ -5,7 +5,7 @@ Created on Wed Jan 19 07:45:36 2022
 @author: jihon
 """
 
-#pyinstaller --add-data="C:/Users/yang/AppData/Roaming/Python/Python37/site-packages/rdkit_pypi.libs;rdkit_pypi.libs" -F "FastEI.py"
+
 import hnswlib
 import json
 import numpy as np
@@ -31,7 +31,7 @@ import os
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 
-from GUI.ui.FastEI_ import Ui_Form
+from FastEI_ import Ui_Form
 
 
 class MakeFigure(FigureCanvas):
