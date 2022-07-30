@@ -28,8 +28,6 @@ from matplotlib.figure import Figure
 from hnswlib import Index
 from gensim.models import Word2Vec
 import os
-import sys
-sys.path.append("../..")
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
 
