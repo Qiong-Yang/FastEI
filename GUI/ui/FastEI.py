@@ -148,8 +148,8 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         super(FastEI, self).__init__(parent)
         self.setupUi(self)
         self.setWindowTitle("FastEI")
-        self.label_2.setPixmap(QtGui.QPixmap("GUI/ui/FastEI.png"))
-        self.setWindowIcon(QtGui.QIcon("GUI/ui/FastEI.ico"))
+        self.label_2.setPixmap(QtGui.QPixmap("FastEI.png"))
+        self.setWindowIcon(QtGui.QIcon("FastEI.ico"))
         self.ProcessBar(0, 'ready')
         
         self.figSpe = MakeFigure(1.8, 1.2, dpi = 200)
@@ -477,7 +477,7 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
 
 
     def FillResultWidget(self, data):
-        self.tableWidgetRes.horizontalHeader.setVisible(False)
+        #self.tableWidgetRes.horizontalHeader.setVisible(False)
         self.tableWidgetRes.setRowCount(data.shape[0])
         self.tableWidgetRes.setColumnCount(data.shape[1])
         self.tableWidgetRes.setHorizontalHeaderLabels(data.columns)
