@@ -5,7 +5,7 @@ Created on Wed Jan 19 07:45:36 2022
 @author: jihon
 """
 
-#pyinstaller --add-data="C:/Users/yang/AppData/Roaming/Python/Python37/site-packages/rdkit_pypi.libs;rdkit_pypi.libs" -F "FastEI.py"
+#pyinstaller --add-data="C:/Users/yang/AppData/Roaming/Python/Python37/site-packages/rdkit_pypi.libs;rdkit_pypi.libs" -w -i E:/hub/FastEI/FastEIGUI/gui/FastEI.ico "FastEI.py
 import hnswlib
 import json
 import numpy as np
@@ -431,7 +431,9 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         result = self.compounds.loc[index,:]
         result['Distance'] = score
         result = result.reset_index(drop = True)
+        result['Rank'] = 1 + np.arange(len(result))
         self.FillResultWidget(result)
+
 
 
     def PlotResult(self):
