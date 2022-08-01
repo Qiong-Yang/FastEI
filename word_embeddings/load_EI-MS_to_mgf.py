@@ -12,7 +12,8 @@ import sys
 sys.path.append("..")
 from data_process import spec
 import sqlite3
-gradedb = sqlite3.connect("C:/Users/yang/Downloads/FastEIGUI/gui/data/IN_SILICO_LIBRARY.db")
+import os
+gradedb = sqlite3.connect(os.path.abspath(os.path.join(os.getcwd(), ".."))+"/data/IN_SILICO_LIBRARY.db")
 cursor=gradedb.cursor()
 cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
 Tables=cursor.fetchall()
@@ -39,31 +40,25 @@ spec.save_as_mgf(spectrums, 'data/predcited_spectrums.mgf')
 cursor.close()
 
 import os
+import pandas as pd
 spectrums=[]
-all_files = os.listdir('spectra/')
-all_files=sorted(all_files,key = lambda i:int(re.match(r'(\d+)',i).group()))
+all_files = os.listdir(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/query spectra/'))
 for i in range(len(all_files)):
-    f = 'spectra/' + all_files[i]
+    f = os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/query spectra/') + all_files[i]
     mz=[]
     inten=[]  
-    with open(f, "r") as f:
-        data = []   
-        for line in f:        
-            data.append(line.rstrip())  
+    data=pd.read_csv(f,header=None)
  
-    for j in range(len(data)):
-        if data[j]=='m/z	Absolute Intensity	Relative Intensity':
-            index=j
-            for k in range(index+1,len(data)):
-                mz.append(float(round(float(data[k].split('\t')[0]))))
-                inten.append(float(data[k].split('\t')[2]))
-                M=np.array(mz)
-                I=np.array(inten)
-                I/= max(I)
+    for j in range(len(data[0])):
+        mz.append(float(round(float(data[0][j]))))
+        inten.append(float(data[1][j]))
+        M=np.array(mz)
+        I=np.array(inten)
+        I/= max(I)
                 #delete noise
-                keep = np.where(I > 0.001)[0]
-                M = M[keep]
-                I = I[keep]
+        keep = np.where(I > 0.001)[0]
+        M = M[keep]
+        I = I[keep]
 
     if max(M)>1500:
         continue
