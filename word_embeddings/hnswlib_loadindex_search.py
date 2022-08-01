@@ -11,13 +11,13 @@ from scipy.sparse import load_npz
 import time
 import hnswlib
 import pickle
-xq= load_npz("data/compounds10_meassured_word_embeddings.npz").todense().astype('float32')
+xq= load_npz(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/compounds10_measured_word_embeddings.npz')).todense().astype('float32')
 xq_len = np.linalg.norm(xq, axis=1, keepdims=True)
 xq = xq/xq_len
 dim = 500
 start_time=time.time()*1000
 p = hnswlib.Index(space='l2', dim=dim) 
-p.load_index("index/references_index.bin", max_elements =2166721)
+p.load_index(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+"/data/references_index.bin"), max_elements =2166721)
 end_time=time.time()*1000
 print('loadindex_time %.4f'%((end_time-start_time)/100))
 import time
@@ -30,8 +30,8 @@ I, D = p.knn_query(xq, k)
 end_time=time.time()*1000
 print('search_time %.4f'%((end_time-start_time)/100))
 
-np.save('data/results/10compounds_index_results.npy',I)
-np.save('data/results/10compounds_score_results.npy',D)
+np.save(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/10compounds_index_results.npy'),I)
+np.save(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/10compounds_score_results.npy'),D)
 
 
 p_copy = pickle.loads(pickle.dumps(p)) # creates a copy of index p using pickle round-trip

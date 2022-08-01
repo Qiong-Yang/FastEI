@@ -11,7 +11,7 @@ from scipy.sparse import load_npz
 import time
 import hnswlib
 import pickle
-xb= load_npz('data/all_predicted_word_embeddings.npz').todense().astype('float32')
+xb= load_npz(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/all_predicted_word_embeddings.npz')).todense().astype('float32')
 xb_len =  np.linalg.norm(xb, axis=1, keepdims=True)
 xb = xb/xb_len
 dim = 500
@@ -32,7 +32,7 @@ print('add_time %.4f'%((end_time-start_time)/100))
 
 
 start_time=time.time()*1000
-p.save_index('index/references_index.bin')
+p.save_index(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/references_index.bin'))
 end_time=time.time()*1000
 print('saveindex_time %.4f'%((end_time-start_time)/100))
 # Index objects support pickling
