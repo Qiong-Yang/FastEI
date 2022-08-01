@@ -36,7 +36,7 @@ for row in tqdm(cursor):
                                 metadata={'compound_id': row[0],'smiles':smi})
         spectrums.append(spectrum)
    
-spec.save_as_mgf(spectrums, 'data/predcited_spectrums.mgf')
+spec.save_as_mgf(spectrums, os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/predcited_spectrums.mgf'))
 cursor.close()
 
 import os
@@ -66,4 +66,4 @@ for i in range(len(all_files)):
         spectrum = spec.Spectrum(mz=M,intensities=I,
                                 metadata={'compound_name': 'substance_measured'+str(all_files[i])})
         spectrums.append(spectrum)
-spec.save_as_mgf(spectrums, 'data/10compounds_meassured_spectra.mgf') 
+spec.save_as_mgf(spectrums,  os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/10compounds_measured_spectra.mgf') )
