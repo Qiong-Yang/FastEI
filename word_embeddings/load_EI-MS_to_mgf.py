@@ -42,9 +42,9 @@ cursor.close()
 import os
 import pandas as pd
 spectrums=[]
-all_files = os.listdir(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/query spectra/'))
+all_files = os.listdir(os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/query spectra_csv/'))
 for i in range(len(all_files)):
-    f = os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/query spectra/') + all_files[i]
+    f = os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".."))+'/data/query spectra_csv/') + all_files[i]
     mz=[]
     inten=[]  
     data=pd.read_csv(f,header=None)
