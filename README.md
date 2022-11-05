@@ -63,6 +63,7 @@ Install software: [FastEI-GUI-1.0.0-Windows.exe](https://github.com/Qiong-Yang/F
 
 
 The video for using the FastEI is available at the [video folder](https://github.com/Qiong-Yang/FastEI/blob/main/video).
+
 https://user-images.githubusercontent.com/46306770/200098429-dd42b2ba-db06-4f8f-b16f-bfbabb4b17e4.mov
 
 
