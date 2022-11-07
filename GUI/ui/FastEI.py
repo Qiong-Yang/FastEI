@@ -32,8 +32,18 @@ import sys
 sys.path.append("../..")
 from data_process import spec
 from data_process.spec_to_wordvector import spec_to_wordvector
+from data_process.data_converter import read_jdx_to_csv, read_msp_to_csv, read_txt_to_csv
 
 from GUI.ui.FastEI_ import Ui_Form
+
+import shutil
+
+temp_path = os.path.abspath(os.path.join(os.getcwd(), "../..", 'temp'))
+try:
+    shutil.rmtree(temp_path)  
+    os.mkdir(temp_path) 
+except:
+    os.mkdir(temp_path) 
 
 
 class MakeFigure(FigureCanvas):
@@ -200,7 +210,7 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         self.textBrowserIndex.setText(self.default_index)
         self.default_database = os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/IN_SILICO_LIBRARY.db'
         self.textBrowserComp.setText(self.default_database)
-        self.default_model =  os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/data/references_word2vec.model'
+        self.default_model =  os.path.abspath(os.path.join(os.getcwd(), "../.."))+'/model/references_word2vec.model'
         self.textBrowserMod.setText(self.default_model)
         
         self.ProcessBar(30, 'loading index...')
@@ -333,16 +343,31 @@ class FastEI(QtWidgets.QWidget, Ui_Form):
         self.Finished = False
         options = QtWidgets.QFileDialog.Options()
         options |= QtWidgets.QFileDialog.DontUseNativeDialog
-        fileNames, _ = QtWidgets.QFileDialog.getOpenFileNames(self,"Load", "","CSV Files (*.csv);;TXT Files (*.txt)", options=options)
+        fileNames, _ = QtWidgets.QFileDialog.getOpenFileNames(self,"Load", "","CSV Files (*.csv);;TXT Files (*.txt);; MSP File (*.msp);; JDX File (*.jdx)", options=options)
         
         self.QueryList = []
         self.SpectrumList = []
         self.listWidgetQue.clear()
         
-        if len(fileNames) == 0:
+        files_to_read = [f for f in fileNames if f.split('.')[-1] == 'csv']
+        files_to_convert = [f for f in fileNames if f.split('.')[-1] != 'csv']
+        
+        for f in files_to_convert:
+            if f.split('.')[-1] == 'jdx':
+                read_jdx_to_csv(f, save_path = temp_path)
+            elif f.split('.')[-1] == 'txt':
+                read_txt_to_csv(f, save_path = temp_path)
+            elif f.split('.')[-1] == 'msp':
+                read_msp_to_csv(f, save_path = temp_path)
+            else:
+                pass
+        
+        files_to_read += [temp_path + '/' + f for f in os.listdir(temp_path)]
+        
+        if len(files_to_read) == 0:
             pass
         else:
-            self.QueryList, self.SpectrumList = self.ReadMSFiles(fileNames)
+            self.QueryList, self.SpectrumList = self.ReadMSFiles(files_to_read)
             if len(self.QueryList) != len(fileNames):
                 self.WarnMsg('Ignore invalid files')
             for fileName in self.QueryList:
