@@ -4,7 +4,7 @@
 
 3. Generating an SQLite library：
 
-   ![schema](E:\hub\lib\schema.png)
+   ![schema](https://github.com/Qiong-Yang/FastEI/blob/main/lib/schema.png)
 
     including identifiers(COMPID), SMILES, molecular mass weight (EXACTMOLWT), and predicted spectra(MZS and INTENSITYS).
 
